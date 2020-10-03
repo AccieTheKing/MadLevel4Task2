@@ -9,4 +9,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="txt_welcome">Welcome</string>
+    <string name="txt_instruction">Instructions: select rock, paper of scissors to play</string>
+    <string name="txt_your_statistics">Your all time statistics</string>
+    <string name="txt_you_win">You win!</string>
+    <string name="txt_vs" >V.S.</string>
+    <string name="txt_win">Win: %d</string>
+    <string name="txt_draw">Draw: %d</string>
+    <string name="txt_loses">Lose: %d</string>
+    <string name="txt_computer">Computer</string>
+    <string name="txt_you">You</string>
 </resources>
