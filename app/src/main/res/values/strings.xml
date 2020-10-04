@@ -19,4 +19,7 @@
     <string name="txt_loses">Lose: %d</string>
     <string name="txt_computer">Computer</string>
     <string name="txt_you">You</string>
+    <string name="title_win">YOU WIN!</string>
+    <string name="title_lose">YOU LOSE!</string>
+    <string name="title_draw">DRAW!!</string>
 </resources>
