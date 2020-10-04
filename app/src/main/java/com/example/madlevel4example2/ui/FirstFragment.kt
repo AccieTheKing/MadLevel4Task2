@@ -8,12 +8,22 @@ import androidx.fragment.app.Fragment
 import com.example.madlevel4example2.R
 import com.example.madlevel4example2.enums.GameState
 import com.example.madlevel4example2.enums.Moves
+import com.example.madlevel4example2.model.Game
+import com.example.madlevel4example2.repository.GameRepository
 import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
+    private lateinit var gameRepository: GameRepository
+    private var gameList: ArrayList<Game> = arrayListOf()
+
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +35,8 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        gameRepository = GameRepository(requireContext())
+        getGamesStatsFromDatabase()
         initView()
 //        view.findViewById<Button>(R.id.button_first).setOnClickListener {
 //            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
@@ -113,5 +124,23 @@ class FirstFragment : Fragment() {
         }
 
         return GameState.LOSE;
+    }
+
+    /**
+     * This method will retrieve all the games statistics from the database and update the ui
+     */
+    private fun getGamesStatsFromDatabase() {
+        mainScope.launch {
+            val numOfWins = withContext(Dispatchers.IO) { gameRepository.getAllWins() }
+            val numOfDraws = withContext(Dispatchers.IO) { gameRepository.getAllDraws() }
+            val numOfLoses = withContext(Dispatchers.IO) { gameRepository.getAllLoses() }
+
+
+            this@FirstFragment.gameList.clear()
+
+            txt_wins.text = getString(R.string.txt_win, numOfWins)
+            txt_draws.text = getString(R.string.txt_draw, numOfDraws)
+            txt_loses.text = getString(R.string.txt_loses, numOfLoses)
+        }
     }
 }
