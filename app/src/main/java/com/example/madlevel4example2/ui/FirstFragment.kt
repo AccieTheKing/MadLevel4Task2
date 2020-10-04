@@ -1,10 +1,13 @@
-package com.example.madlevel4example2
+package com.example.madlevel4example2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.madlevel4example2.R
+import com.example.madlevel4example2.enums.GameState
+import com.example.madlevel4example2.enums.Moves
 import kotlinx.android.synthetic.main.fragment_first.*
 
 /**
@@ -52,13 +55,13 @@ class FirstFragment : Fragment() {
 
         when (checkForWin(movesByComputer, userMove)) {
             GameState.WIN -> {
-                txt_game_result.text = "You win"
+                txt_game_result.text = getString(R.string.title_win)
             }
             GameState.DRAW -> {
-                txt_game_result.text = "Draw"
+                txt_game_result.text = getString(R.string.title_draw)
             }
             GameState.LOSE -> {
-                txt_game_result.text = "You lose"
+                txt_game_result.text = getString(R.string.title_lose)
             }
         }
     }

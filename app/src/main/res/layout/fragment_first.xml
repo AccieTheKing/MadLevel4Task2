@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".ui.FirstFragment">
 
     <TextView
         android:id="@+id/txt_welcome"
@@ -136,7 +136,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txt_vs"
-        app:layout_constraintTop_toBottomOf="@+id/txt_youWin"
+        app:layout_constraintTop_toBottomOf="@+id/txt_game_result"
         android:contentDescription="TODO" />
 
     <TextView
@@ -151,7 +151,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imv_move_player"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imv_move_computer"
-        app:layout_constraintTop_toBottomOf="@+id/txt_youWin" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_game_result" />
 
     <ImageView
         android:id="@+id/imv_move_computer"
@@ -162,11 +162,11 @@
         app:layout_constraintEnd_toStartOf="@+id/txt_vs"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_youWin"
+        app:layout_constraintTop_toBottomOf="@+id/txt_game_result"
         android:contentDescription="TODO" />
 
     <TextView
-        android:id="@+id/txt_youWin"
+        android:id="@+id/txt_game_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
