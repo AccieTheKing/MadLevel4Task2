@@ -7,7 +7,7 @@ import com.example.madlevel4example2.enums.GameState
 @Entity(tableName = "gameTable")
 data class Game(
     @ColumnInfo(name = "state")
-    var state: GameState,
+    var state: String,
     @ColumnInfo(name = "date")
     var date: Long,
     @ColumnInfo(name = "computerMove")
