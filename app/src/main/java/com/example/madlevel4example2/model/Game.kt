@@ -16,7 +16,7 @@ data class Game(
     var playerMove: String,
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Long?
+    var id: Long? = null
 )
 
 

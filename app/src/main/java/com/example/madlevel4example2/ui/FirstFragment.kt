@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -110,16 +111,40 @@ class FirstFragment : Fragment() {
      */
     private fun checkForWin(computerMove: Moves, userMove: Moves): GameState {
         if (computerMove == userMove) {
+            storeGame(
+                Game(
+                    state = GameState.DRAW.toString(),
+                    date = Date().time,
+                    computerMove = computerMove.toString(),
+                    playerMove = userMove.toString()
+                )
+            )
             return GameState.DRAW
         } else if (computerMove == Moves.ROCK && userMove == Moves.PAPER ||
             computerMove == Moves.PAPER && userMove == Moves.SCISSORS ||
             computerMove == Moves.SCISSORS && userMove == Moves.ROCK
         ) {
+            storeGame(
+                Game(
+                    state = GameState.WIN.toString(),
+                    date = Date().time,
+                    computerMove = computerMove.toString(),
+                    playerMove = userMove.toString()
+                )
+            )
             return GameState.WIN
         } else if (userMove == Moves.ROCK && computerMove == Moves.PAPER ||
             userMove == Moves.PAPER && computerMove == Moves.SCISSORS ||
             userMove == Moves.SCISSORS && computerMove == Moves.ROCK
         ) {
+            storeGame(
+                Game(
+                    state = GameState.LOSE.toString(),
+                    date = Date().time,
+                    computerMove = computerMove.toString(),
+                    playerMove = userMove.toString()
+                )
+            )
             return GameState.LOSE
         }
 
@@ -135,12 +160,22 @@ class FirstFragment : Fragment() {
             val numOfDraws = withContext(Dispatchers.IO) { gameRepository.getAllDraws() }
             val numOfLoses = withContext(Dispatchers.IO) { gameRepository.getAllLoses() }
 
-
-            this@FirstFragment.gameList.clear()
-
             txt_wins.text = getString(R.string.txt_win, numOfWins)
             txt_draws.text = getString(R.string.txt_draw, numOfDraws)
             txt_loses.text = getString(R.string.txt_loses, numOfLoses)
+        }
+    }
+
+    /**
+     * This method will store the played game to the database
+     */
+    private fun storeGame(currentGame: Game) {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                gameRepository.insertGame(currentGame)
+            }
+
+            getGamesStatsFromDatabase()
         }
     }
 }
