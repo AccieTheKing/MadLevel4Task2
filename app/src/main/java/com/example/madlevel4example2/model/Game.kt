@@ -2,7 +2,7 @@ package com.example.madlevel4example2.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.example.madlevel4example2.enums.GameState
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "gameTable")
 data class Game(
@@ -13,7 +13,10 @@ data class Game(
     @ColumnInfo(name = "computerMove")
     var computerMove: String,
     @ColumnInfo(name = "playerMove")
-    var playerMove: String
+    var playerMove: String,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long? = null
 )
 
 
