@@ -6,5 +6,11 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
+        android:visible="false"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/btn_nav_icon"
+        android:icon="@drawable/ic_history_white_24dp"
+        app:showAsAction="ifRoom|ifRoom"
+        android:title="@string/header_icon_btn" />
 </menu>
