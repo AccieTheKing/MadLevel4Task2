@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.madlevel4example2.R
 import com.example.madlevel4example2.enums.GameState
 import com.example.madlevel4example2.enums.Moves
@@ -39,8 +41,8 @@ class FirstFragment : Fragment() {
         gameRepository = GameRepository(requireContext())
         getGamesStatsFromDatabase()
         initView()
-//        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+//        view.findViewById<ImageView>(R.id.img_history).setOnClickListener {
+//            findNavController().navigate(R.id.action_FirstFragment_to_historyFragment)
 //        }
     }
 
