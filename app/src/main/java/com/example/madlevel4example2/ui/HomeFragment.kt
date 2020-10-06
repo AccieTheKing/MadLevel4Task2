@@ -2,9 +2,9 @@ package com.example.madlevel4example2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.madlevel4example2.R
@@ -12,7 +12,7 @@ import com.example.madlevel4example2.enums.GameState
 import com.example.madlevel4example2.enums.Moves
 import com.example.madlevel4example2.model.Game
 import com.example.madlevel4example2.repository.GameRepository
-import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,10 +22,8 @@ import java.util.*
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class HomeFragment : Fragment() {
     private lateinit var gameRepository: GameRepository
-    private var gameList: ArrayList<Game> = arrayListOf()
-
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
@@ -33,7 +31,7 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,9 +39,6 @@ class FirstFragment : Fragment() {
         gameRepository = GameRepository(requireContext())
         getGamesStatsFromDatabase()
         initView()
-//        view.findViewById<ImageView>(R.id.img_history).setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_historyFragment)
-//        }
     }
 
     /**
