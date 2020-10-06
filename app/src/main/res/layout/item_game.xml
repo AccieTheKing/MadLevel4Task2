@@ -10,19 +10,33 @@
         android:id="@+id/img_his_you"
         android:layout_width="145dp"
         android:layout_height="127dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/lbl_vs"
         app:layout_constraintTop_toBottomOf="@+id/txt_date"
         app:srcCompat="@drawable/paper" />
 
+    <TextView
+        android:id="@+id/lbl_comuter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/txt_computer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_computer"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img__his_computer"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ImageView
         android:id="@+id/img__his_computer"
         android:layout_width="145dp"
         android:layout_height="127dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toStartOf="@+id/lbl_vs"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +56,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/img__his_computer"
         app:layout_constraintTop_toTopOf="@+id/img_his_you"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.463" />
+
+    <TextView
+        android:id="@+id/lbl_computer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/txt_you"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_comuter"
+        app:layout_constraintTop_toBottomOf="@+id/img_his_you"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txt_game_status"
@@ -67,31 +95,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_game_status" />
-
-    <TextView
-        android:id="@+id/lbl_comuter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/txt_computer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/lbl_computer"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img__his_computer" />
-
-    <TextView
-        android:id="@+id/lbl_computer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/txt_you"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_comuter"
-        app:layout_constraintTop_toBottomOf="@+id/img_his_you" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
