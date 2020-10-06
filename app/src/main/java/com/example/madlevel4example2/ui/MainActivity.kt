@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(findViewById(R.id.toolbarHistory))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -28,13 +28,24 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
-            R.id.btn_nav_icon -> {
-                navController.navigate(R.id.action_FirstFragment_to_historyFragment)
+            R.id.btn_nav_icon_delete -> {
+                toggleNavIcon()
+                true
+            }
+            R.id.btn_nav_icon_history -> {
+                navController.navigate(R.id.action_HomeFragment_to_historyFragment)
+                toggleNavIcon()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    /**
+     * This method should switch the available icons shown in the toolbar and change the title
+     */
+    private fun toggleNavIcon() {
+
     }
 
 }
