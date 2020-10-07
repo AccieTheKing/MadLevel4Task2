@@ -3,23 +3,29 @@ package com.example.madlevel4example2.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.madlevel4example2.R
+import com.example.madlevel4example2.repository.GameRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var historyButton: MenuItem
     private lateinit var deleteButton: MenuItem
+    private lateinit var gameRepository: GameRepository
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbarHistory))
+        gameRepository = GameRepository(baseContext)
 
         navController = findNavController(R.id.nav_host_fragment)
     }
@@ -47,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.btn_nav_icon_delete -> {
-
+                deleteAllGames()
                 true
             }
             R.id.btn_nav_icon_history -> {
@@ -67,6 +73,20 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.popBackStack()
         }
         return true
+    }
+
+    private fun deleteAllGames() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                gameRepository.deleteAllGames()
+            }
+
+            Toast.makeText(
+                baseContext,
+                "Successful deleted all games",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     /**
