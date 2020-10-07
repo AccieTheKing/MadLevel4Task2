@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.madlevel4example2.R
 import com.example.madlevel4example2.repository.GameRepository
+import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var historyButton: MenuItem
     private lateinit var deleteButton: MenuItem
     private lateinit var gameRepository: GameRepository
+    private lateinit var gameListAdapter: GameListAdapter
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +82,9 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 gameRepository.deleteAllGames()
             }
+            gameListAdapter = GameListAdapter(arrayListOf())
+            rvGames.adapter = gameListAdapter
+            gameListAdapter.notifyDataSetChanged()
 
             Toast.makeText(
                 baseContext,
