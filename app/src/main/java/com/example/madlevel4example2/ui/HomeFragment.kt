@@ -2,6 +2,8 @@ package com.example.madlevel4example2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.madlevel4example2.R
