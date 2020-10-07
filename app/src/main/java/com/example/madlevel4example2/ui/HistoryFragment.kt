@@ -55,17 +55,6 @@ class HistoryFragment : Fragment() {
     }
 
 
-    private fun deleteAllGames() {
-        mainScope.launch {
-            withContext(Dispatchers.IO) {
-                gameRepository.deleteAllGames()
-            }
-
-            this@HistoryFragment.gameList.clear() // clear local list
-            this@HistoryFragment.gameListAdapter.notifyDataSetChanged() // refresh list
-        }
-    }
-
     private fun getListFromDatabase() {
         mainScope.launch {
             val games = withContext(Dispatchers.IO) { // retrieve stored games
