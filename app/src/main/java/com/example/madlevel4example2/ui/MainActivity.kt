@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                 deleteButton.isVisible = true
             } else { // home fragment
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                supportActionBar?.setTitle(R.string.app_name)
                 historyButton.isVisible = true
                 deleteButton.isVisible = false
             }
