@@ -50,7 +50,20 @@ class HistoryFragment : Fragment() {
             )
         )
 
+
         //TODO: bind an itemTouchHelper to the recyclerview
+    }
+
+
+    private fun deleteAllGames() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                gameRepository.deleteAllGames()
+            }
+
+            this@HistoryFragment.gameList.clear() // clear local list
+            this@HistoryFragment.gameListAdapter.notifyDataSetChanged() // refresh list
+        }
     }
 
     private fun getListFromDatabase() {
