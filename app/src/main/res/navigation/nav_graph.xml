@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_HomeFragment_to_historyFragment"
-            app:destination="@id/historyFragment"
             app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit" />
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
