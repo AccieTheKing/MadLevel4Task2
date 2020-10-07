@@ -1,7 +1,6 @@
 package com.example.madlevel4example2.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +10,8 @@ import com.example.madlevel4example2.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
+    private lateinit var historyButton: MenuItem
+    private lateinit var deleteButton: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +19,16 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbarHistory))
 
         navController = findNavController(R.id.nav_host_fragment)
+    }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (menu != null) {
+            historyButton = menu.findItem(R.id.btn_nav_icon_history)
+            deleteButton = menu.findItem(R.id.btn_nav_icon_delete)
+            deleteButton.setVisible(false)
+        }
         toggleNavIcon()
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -32,55 +41,49 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         return when (item.itemId) {
             R.id.btn_nav_icon_delete -> {
                 true
             }
             R.id.btn_nav_icon_history -> {
-
                 navController.navigate(R.id.action_HomeFragment_to_historyFragment)
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
-
-    override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
-        Log.v(Log.DEBUG.toString(), String.format("Het leven: %d", count))
         if (count == 0) {
             super.onBackPressed()
         } else {
             supportActionBar?.setHomeButtonEnabled(false)
             supportFragmentManager.popBackStack()
         }
+        return true
     }
 
     /**
      * This method listens to the destination change and should switch the available
      * icons shown in the toolbar and change the title
-     *
      */
     private fun toggleNavIcon() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id in arrayOf(R.id.historyFragment)) {
+            if (destination.id in arrayOf(R.id.historyFragment)) { // history fragment
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setTitle(R.string.title_fragment_history)
-            } else {
+                historyButton.setVisible(false)
+                deleteButton.setVisible(true)
+            } else { // home fragment
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                historyButton.setVisible(true)
+                deleteButton.setVisible(false)
             }
         }
-
-        Log.v(
-            Log.DEBUG.toString(),
-            String.format("Het water: %d", supportFragmentManager.backStackEntryCount)
-        )
-
     }
 
 }
