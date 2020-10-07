@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.madlevel4example2.R
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         if (menu != null) {
             historyButton = menu.findItem(R.id.btn_nav_icon_history)
             deleteButton = menu.findItem(R.id.btn_nav_icon_delete)
-            deleteButton.setVisible(false)
+            deleteButton.isVisible = false
         }
         toggleNavIcon()
         return super.onPrepareOptionsMenu(menu)
@@ -44,15 +47,14 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.btn_nav_icon_delete -> {
+
                 true
             }
             R.id.btn_nav_icon_history -> {
                 navController.navigate(R.id.action_HomeFragment_to_historyFragment)
                 true
             }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -76,12 +78,12 @@ class MainActivity : AppCompatActivity() {
             if (destination.id in arrayOf(R.id.historyFragment)) { // history fragment
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setTitle(R.string.title_fragment_history)
-                historyButton.setVisible(false)
-                deleteButton.setVisible(true)
+                historyButton.isVisible = false
+                deleteButton.isVisible = true
             } else { // home fragment
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                historyButton.setVisible(true)
-                deleteButton.setVisible(false)
+                historyButton.isVisible = true
+                deleteButton.isVisible = false
             }
         }
     }
